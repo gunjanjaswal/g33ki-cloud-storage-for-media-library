@@ -1,9 +1,9 @@
 <?php
 /**
- * Plugin Name: G33ki Cloud Storage For Media Library
+ * Plugin Name: Cloud Media Offload — S3, DigitalOcean Spaces & Google Cloud
  * Plugin URI: https://github.com/gunjanjaswal/g33ki-cloud-storage-for-media-library
  * Description: Seamlessly offload your WordPress media library to Amazon S3, DigitalOcean Spaces, or Google Cloud Storage. Effortlessly move media to cloud for better performance and CDN delivery.
- * Version: 1.2.4
+ * Version: 1.3.0
  * Author: Gunjan Jaswal
  * Author URI: https://gunjanjaswal.me
  * Requires at least: 5.0
@@ -21,7 +21,7 @@ if (!defined('ABSPATH')) {
 }
 
 // Define plugin constants
-define('G33KI_VERSION', '1.2.4');
+define('G33KI_VERSION', '1.3.0');
 define('G33KI_PLUGIN_DIR', plugin_dir_path(__FILE__));
 define('G33KI_PLUGIN_URL', plugin_dir_url(__FILE__));
 define('G33KI_PLUGIN_BASENAME', plugin_basename(__FILE__));
@@ -90,16 +90,16 @@ function g33ki_register_connectors($registry) {
     $settings_url = admin_url('admin.php?page=g33ki-cloud-storage-for-media-library');
     $providers = array(
         'g33ki-amazon-s3' => array(
-            'name'        => __('Amazon S3 (G33ki Cloud Storage)', 'g33ki-cloud-storage-for-media-library'),
-            'description' => __('Offload media to Amazon S3. Manage credentials on the G33ki Cloud Storage settings screen.', 'g33ki-cloud-storage-for-media-library'),
+            'name'        => __('Amazon S3', 'g33ki-cloud-storage-for-media-library'),
+            'description' => __('Offload media to Amazon S3. Manage credentials on the Cloud Media Offload settings screen.', 'g33ki-cloud-storage-for-media-library'),
         ),
         'g33ki-digitalocean-spaces' => array(
-            'name'        => __('DigitalOcean Spaces (G33ki Cloud Storage)', 'g33ki-cloud-storage-for-media-library'),
-            'description' => __('Offload media to DigitalOcean Spaces. Manage credentials on the G33ki Cloud Storage settings screen.', 'g33ki-cloud-storage-for-media-library'),
+            'name'        => __('DigitalOcean Spaces', 'g33ki-cloud-storage-for-media-library'),
+            'description' => __('Offload media to DigitalOcean Spaces. Manage credentials on the Cloud Media Offload settings screen.', 'g33ki-cloud-storage-for-media-library'),
         ),
         'g33ki-google-cloud-storage' => array(
-            'name'        => __('Google Cloud Storage (G33ki Cloud Storage)', 'g33ki-cloud-storage-for-media-library'),
-            'description' => __('Offload media to Google Cloud Storage (via HMAC keys). Manage credentials on the G33ki Cloud Storage settings screen.', 'g33ki-cloud-storage-for-media-library'),
+            'name'        => __('Google Cloud Storage', 'g33ki-cloud-storage-for-media-library'),
+            'description' => __('Offload media to Google Cloud Storage (via HMAC keys). Manage credentials on the Cloud Media Offload settings screen.', 'g33ki-cloud-storage-for-media-library'),
         ),
     );
 

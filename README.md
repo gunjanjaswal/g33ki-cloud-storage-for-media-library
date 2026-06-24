@@ -1,13 +1,13 @@
 <div align="center">
 
-# ☁️ G33ki Cloud Storage For Media Library
+# ☁️ Cloud Media Offload — S3, DigitalOcean Spaces & Google Cloud
 
 ### Seamlessly offload WordPress media library to cloud storage — move media library to cloud with ease.
 
 [![WordPress](https://img.shields.io/badge/WordPress-5.0%2B-21759B?style=for-the-badge&logo=wordpress&logoColor=white)](https://wordpress.org)
 [![PHP](https://img.shields.io/badge/PHP-7.4%2B-777BB4?style=for-the-badge&logo=php&logoColor=white)](https://php.net)
 [![License](https://img.shields.io/badge/License-GPLv2-E74C3C?style=for-the-badge)](https://www.gnu.org/licenses/gpl-2.0.html)
-[![Version](https://img.shields.io/badge/Version-1.2.4-2ECC71?style=for-the-badge)](https://github.com/gunjanjaswal/g33ki-cloud-storage-for-media-library/releases)
+[![Version](https://img.shields.io/badge/Version-1.3.0-2ECC71?style=for-the-badge)](https://github.com/gunjanjaswal/g33ki-cloud-storage-for-media-library/releases)
 [![Support on Ko-fi](https://img.shields.io/badge/Ko--fi-Support-FF5E5B?style=for-the-badge&logo=ko-fi&logoColor=white)](https://ko-fi.com/gunjanjaswal)
 
 <br>
@@ -24,7 +24,7 @@
 
 ## ✨ Features
 
-**G33ki Cloud Storage For Media Library** allows you to **offload media library** to cloud storage providers effortlessly. If you want to **move media library to cloud** for better performance, reduced hosting costs, and global CDN delivery, this plugin is for you.
+**Cloud Media Offload** allows you to **offload media library** to cloud storage providers effortlessly. If you want to **move media library to cloud** for better performance, reduced hosting costs, and global CDN delivery, this plugin is for you.
 
 <table>
 <tr>
@@ -274,6 +274,10 @@ g33ki-cloud-storage-for-media-library/
 ---
 
 ## 📝 Changelog
+
+### 1.3.0
+- Renamed the plugin display title to **Cloud Media Offload — S3, DigitalOcean Spaces & Google Cloud** for clarity in search and listings. The slug, settings, and stored data are unchanged — display-only rebrand, safe to update.
+- Cleaned up admin provider labels (removed the redundant brand suffix).
 
 ### 1.2.4
 - **WordPress 7.0 Connectors API integration (tested against `D:\wamp64\www\wordpress7`):** registers Amazon S3, DigitalOcean Spaces, and Google Cloud Storage as `cloud_storage` connectors on the `wp_connectors_init` action.
