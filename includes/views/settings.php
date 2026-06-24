@@ -12,7 +12,7 @@ $g33ki_provider = isset($g33ki_settings['provider']) ? $g33ki_settings['provider
 ?>
 
 <div class="wrap g33ki-settings-wrap">
-    <h1>⚡ <?php esc_html_e('Cloud Media Offload Settings', 'g33ki-cloud-storage-for-media-library'); ?></h1>
+    <h1>⚡ <?php esc_html_e('Cloud Storage For Media Library', 'g33ki-cloud-storage-for-media-library'); ?></h1>
     
     <div class="g33ki-settings-container">
         <form id="g33ki-settings-form" method="post">

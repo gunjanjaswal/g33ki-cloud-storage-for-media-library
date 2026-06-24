@@ -93,8 +93,8 @@ class G33ki_Cloud_Storage_For_Media_Library {
      */
     public function admin_menu() {
         add_menu_page(
-            __('Cloud Media Offload', 'g33ki-cloud-storage-for-media-library'),
-            __('Cloud Media Offload', 'g33ki-cloud-storage-for-media-library'),
+            __('⚡ Cloud Storage For Media Library', 'g33ki-cloud-storage-for-media-library'),
+            __('⚡ Cloud Storage For Media Library', 'g33ki-cloud-storage-for-media-library'),
             'manage_options',
             'g33ki-cloud-storage-for-media-library',
             array($this->settings, 'render_settings_page'),
@@ -428,7 +428,7 @@ class G33ki_Cloud_Storage_For_Media_Library {
 
         $restore_url = admin_url('admin.php?page=g33ki-bulk-restore');
         echo '<div class="notice notice-warning">';
-        echo '<p><strong>' . esc_html__('Cloud Media Offload', 'g33ki-cloud-storage-for-media-library') . ':</strong> ';
+        echo '<p><strong>' . esc_html__('Cloud Storage For Media Library', 'g33ki-cloud-storage-for-media-library') . ':</strong> ';
         echo esc_html__('Some media files exist only in cloud storage. If you deactivate this plugin, those media URLs will break.', 'g33ki-cloud-storage-for-media-library') . ' ';
         echo '<a href="' . esc_url($restore_url) . '"><strong>' . esc_html__('Restore local files first', 'g33ki-cloud-storage-for-media-library') . '</strong></a>';
         echo '</p></div>';

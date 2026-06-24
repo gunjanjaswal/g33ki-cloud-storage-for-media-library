@@ -1,6 +1,6 @@
 <div align="center">
 
-# ☁️ Cloud Media Offload — S3, DigitalOcean Spaces & Google Cloud
+# ☁️ Cloud Storage For Media Library — S3, DigitalOcean Spaces & Google Cloud
 
 ### Seamlessly offload WordPress media library to cloud storage — move media library to cloud with ease.
 
@@ -24,7 +24,7 @@
 
 ## ✨ Features
 
-**Cloud Media Offload** allows you to **offload media library** to cloud storage providers effortlessly. If you want to **move media library to cloud** for better performance, reduced hosting costs, and global CDN delivery, this plugin is for you.
+**Cloud Storage For Media Library** allows you to **offload media library** to cloud storage providers effortlessly. If you want to **move media library to cloud** for better performance, reduced hosting costs, and global CDN delivery, this plugin is for you.
 
 <table>
 <tr>
@@ -82,7 +82,7 @@
 ### 🔐 Fix Permissions
 Scans all offloaded files via HEAD requests. Files returning **403 AccessDenied** or other errors are listed with a one-click fix that sets `public-read` ACL or re-uploads with correct permissions.
 
-**Cloud Media Offload > Fix Permissions**
+**Cloud Storage For Media Library > Fix Permissions**
 
 </td>
 <td width="33%" align="center">
@@ -90,7 +90,7 @@ Scans all offloaded files via HEAD requests. Files returning **403 AccessDenied*
 ### 🖼️ Fix Thumbnails
 Finds offloaded images where **thumbnail sizes are missing** from the cloud. Common after bulk offload interruptions or when WordPress generates new image sizes. Uploads missing thumbnails and stores their cloud URLs.
 
-**Cloud Media Offload > Fix Thumbnails**
+**Cloud Storage For Media Library > Fix Thumbnails**
 
 </td>
 <td width="33%" align="center">
@@ -98,7 +98,7 @@ Finds offloaded images where **thumbnail sizes are missing** from the cloud. Com
 ### 🔗 Fix URLs
 Detects when your **CDN URL, bucket, or region** settings changed but stored media URLs still point to the old location. Bulk-updates all URLs to match current settings — **no re-uploading needed**.
 
-**Cloud Media Offload > Fix URLs**
+**Cloud Storage For Media Library > Fix URLs**
 
 </td>
 </tr>
@@ -154,7 +154,7 @@ cp -r g33ki-cloud-storage-for-media-library /path/to/wp-content/plugins/
 1. **Plugins > Add New > Upload Plugin**
 2. Upload the ZIP file
 3. Activate
-4. Go to **Cloud Media Offload > Settings**
+4. Go to **Cloud Storage For Media Library > Settings**
 
 ---
 
@@ -276,7 +276,7 @@ g33ki-cloud-storage-for-media-library/
 ## 📝 Changelog
 
 ### 1.3.0
-- Renamed the plugin display title to **Cloud Media Offload — S3, DigitalOcean Spaces & Google Cloud** for clarity in search and listings. The slug, settings, and stored data are unchanged — display-only rebrand, safe to update.
+- Renamed the plugin display title to **Cloud Storage For Media Library — S3, DigitalOcean Spaces & Google Cloud** for clarity in search and listings. The slug, settings, and stored data are unchanged — display-only rebrand, safe to update.
 - Cleaned up admin provider labels (removed the redundant brand suffix).
 
 ### 1.2.4

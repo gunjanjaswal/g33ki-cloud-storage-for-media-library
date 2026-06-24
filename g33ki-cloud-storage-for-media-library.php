@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name: Cloud Media Offload — S3, DigitalOcean Spaces & Google Cloud
+ * Plugin Name: Cloud Storage For Media Library — S3, DigitalOcean Spaces & Google Cloud
  * Plugin URI: https://github.com/gunjanjaswal/g33ki-cloud-storage-for-media-library
  * Description: Seamlessly offload your WordPress media library to Amazon S3, DigitalOcean Spaces, or Google Cloud Storage. Effortlessly move media to cloud for better performance and CDN delivery.
  * Version: 1.3.0
@@ -91,15 +91,15 @@ function g33ki_register_connectors($registry) {
     $providers = array(
         'g33ki-amazon-s3' => array(
             'name'        => __('Amazon S3', 'g33ki-cloud-storage-for-media-library'),
-            'description' => __('Offload media to Amazon S3. Manage credentials on the Cloud Media Offload settings screen.', 'g33ki-cloud-storage-for-media-library'),
+            'description' => __('Offload media to Amazon S3. Manage credentials on the Cloud Storage For Media Library settings screen.', 'g33ki-cloud-storage-for-media-library'),
         ),
         'g33ki-digitalocean-spaces' => array(
             'name'        => __('DigitalOcean Spaces', 'g33ki-cloud-storage-for-media-library'),
-            'description' => __('Offload media to DigitalOcean Spaces. Manage credentials on the Cloud Media Offload settings screen.', 'g33ki-cloud-storage-for-media-library'),
+            'description' => __('Offload media to DigitalOcean Spaces. Manage credentials on the Cloud Storage For Media Library settings screen.', 'g33ki-cloud-storage-for-media-library'),
         ),
         'g33ki-google-cloud-storage' => array(
             'name'        => __('Google Cloud Storage', 'g33ki-cloud-storage-for-media-library'),
-            'description' => __('Offload media to Google Cloud Storage (via HMAC keys). Manage credentials on the Cloud Media Offload settings screen.', 'g33ki-cloud-storage-for-media-library'),
+            'description' => __('Offload media to Google Cloud Storage (via HMAC keys). Manage credentials on the Cloud Storage For Media Library settings screen.', 'g33ki-cloud-storage-for-media-library'),
         ),
     );
 

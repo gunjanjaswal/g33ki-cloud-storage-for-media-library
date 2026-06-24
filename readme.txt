@@ -1,4 +1,4 @@
-=== Cloud Media Offload — S3, DigitalOcean Spaces & Google Cloud ===
+=== Cloud Storage For Media Library — S3, DigitalOcean Spaces & Google Cloud ===
 Contributors: gunjanjaswal
 Tags: offload media library, move media library to cloud, cloud storage, s3, cdn
 Requires at least: 5.0
@@ -13,7 +13,7 @@ Effortlessly offload media library assets to Amazon S3, DigitalOcean Spaces, or 
 
 == Description ==
 
-**Cloud Media Offload** is the ultimate solution to **offload media library** assets, including images, videos, and documents, to leading cloud storage providers. By choosing to **move media library to cloud**, you significantly improve your website's performance, reduce server hosting costs, and leverage global CDN delivery — all with zero manual effort and no external dependencies.
+**Cloud Storage For Media Library** is the ultimate solution to **offload media library** assets, including images, videos, and documents, to leading cloud storage providers. By choosing to **move media library to cloud**, you significantly improve your website's performance, reduce server hosting costs, and leverage global CDN delivery — all with zero manual effort and no external dependencies.
 
 Whether you're looking to offload WordPress media to Amazon S3, or seeking a cost-effective way to store files on DigitalOcean Spaces, this plugin handles it all automatically.
 
@@ -144,7 +144,7 @@ Used to store and serve your media files globally.
 
 1. Log in to your WordPress admin panel
 2. Navigate to Plugins > Add New
-3. Search for "Cloud Media Offload" or "offload media library"
+3. Search for "Cloud Storage For Media Library" or "offload media library"
 4. Click "Install Now" and then "Activate"
 
 = Manual Installation =
@@ -159,7 +159,7 @@ No additional setup steps, libraries, or Composer required. The plugin works imm
 
 = Configuration =
 
-1. Navigate to **Cloud Media Offload > Settings** in your WordPress admin
+1. Navigate to **Cloud Storage For Media Library > Settings** in your WordPress admin
 2. Select your storage provider (Amazon S3, DigitalOcean Spaces, or Google Cloud Storage)
 3. Enter your credentials:
    * Access Key / Access Key ID
@@ -191,7 +191,7 @@ Files are first uploaded to your WordPress server, then automatically copied to 
 
 = What happens to my existing media files? =
 
-Existing media files are not automatically migrated. Use the **Bulk Offload** tool under Cloud Media Offload > Bulk Offload to migrate existing files with one click.
+Existing media files are not automatically migrated. Use the **Bulk Offload** tool under Cloud Storage For Media Library > Bulk Offload to migrate existing files with one click.
 
 = Can I remove local files after uploading to cloud storage? =
 
@@ -203,19 +203,19 @@ Absolutely! Enter your CDN URL (CloudFront, KeyCDN, BunnyCDN, etc.) in the "CDN 
 
 = What if I deactivate the plugin? =
 
-Before deactivating, go to **Cloud Media Offload > Restore Local** to download all cloud-stored files back to your server. A warning notice on the Plugins page reminds you if local files are missing. After restoring, WordPress will serve media from your server as normal.
+Before deactivating, go to **Cloud Storage For Media Library > Restore Local** to download all cloud-stored files back to your server. A warning notice on the Plugins page reminds you if local files are missing. After restoring, WordPress will serve media from your server as normal.
 
 = Some images show 403 AccessDenied errors after bulk offload. How do I fix this? =
 
-Go to **Cloud Media Offload > Fix Permissions**. This tool scans all offloaded files and detects which ones are returning errors. Click "Fix All Broken Files" to set the correct public-read ACL on each file.
+Go to **Cloud Storage For Media Library > Fix Permissions**. This tool scans all offloaded files and detects which ones are returning errors. Click "Fix All Broken Files" to set the correct public-read ACL on each file.
 
 = Some image sizes (thumbnails) are not loading from the cloud. How do I fix this? =
 
-Go to **Cloud Media Offload > Fix Thumbnails**. This tool scans all offloaded attachments and finds which thumbnail sizes are missing from the cloud. Click "Fix Missing Thumbnails" to upload them.
+Go to **Cloud Storage For Media Library > Fix Thumbnails**. This tool scans all offloaded attachments and finds which thumbnail sizes are missing from the cloud. Click "Fix Missing Thumbnails" to upload them.
 
 = I changed my CDN URL / bucket / region and now images are broken. How do I fix this? =
 
-Go to **Cloud Media Offload > Fix URLs**. This tool detects when stored URLs don't match your current settings. Click "Fix All Mismatched URLs" to update them — no re-uploading needed.
+Go to **Cloud Storage For Media Library > Fix URLs**. This tool detects when stored URLs don't match your current settings. Click "Fix All Mismatched URLs" to update them — no re-uploading needed.
 
 = The bulk offload stops or times out midway. What do I do? =
 
@@ -275,7 +275,7 @@ Yes! All credentials are stored securely in your WordPress database. Data is tra
 == Changelog ==
 
 = 1.3.0 =
-* Renamed the plugin display title to "Cloud Media Offload — S3, DigitalOcean Spaces & Google Cloud" for clarity in search and listings. The plugin slug, settings (`g33ki_settings`), and all stored data are unchanged — this is a display-only rebrand and updates safely with no reconfiguration required.
+* Renamed the plugin display title to "Cloud Storage For Media Library — S3, DigitalOcean Spaces & Google Cloud" for clarity in search and listings. The plugin slug, settings (`g33ki_settings`), and all stored data are unchanged — this is a display-only rebrand and updates safely with no reconfiguration required.
 * Cleaned up provider labels on the admin screen (removed the redundant brand suffix).
 
 = 1.2.4 =
@@ -332,7 +332,7 @@ Yes! All credentials are stored securely in your WordPress database. Data is tra
 == Upgrade Notice ==
 
 = 1.3.0 =
-Display name changed to "Cloud Media Offload". The slug and your settings are unchanged — safe to update, no reconfiguration needed.
+Display name changed to "Cloud Storage For Media Library". The slug and your settings are unchanged — safe to update, no reconfiguration needed.
 
 = 1.2.4 =
 WordPress 7.0 Connectors API forward-compat: cloud-storage credentials registered with the central Connections screen when available. No breaking changes; graceful fallback on older WP.
