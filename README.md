@@ -82,7 +82,7 @@
 ### 🔐 Fix Permissions
 Scans all offloaded files via HEAD requests. Files returning **403 AccessDenied** or other errors are listed with a one-click fix that sets `public-read` ACL or re-uploads with correct permissions.
 
-**G33ki Cloud > Fix Permissions**
+**Cloud Media Offload > Fix Permissions**
 
 </td>
 <td width="33%" align="center">
@@ -90,7 +90,7 @@ Scans all offloaded files via HEAD requests. Files returning **403 AccessDenied*
 ### 🖼️ Fix Thumbnails
 Finds offloaded images where **thumbnail sizes are missing** from the cloud. Common after bulk offload interruptions or when WordPress generates new image sizes. Uploads missing thumbnails and stores their cloud URLs.
 
-**G33ki Cloud > Fix Thumbnails**
+**Cloud Media Offload > Fix Thumbnails**
 
 </td>
 <td width="33%" align="center">
@@ -98,7 +98,7 @@ Finds offloaded images where **thumbnail sizes are missing** from the cloud. Com
 ### 🔗 Fix URLs
 Detects when your **CDN URL, bucket, or region** settings changed but stored media URLs still point to the old location. Bulk-updates all URLs to match current settings — **no re-uploading needed**.
 
-**G33ki Cloud > Fix URLs**
+**Cloud Media Offload > Fix URLs**
 
 </td>
 </tr>
@@ -154,7 +154,7 @@ cp -r g33ki-cloud-storage-for-media-library /path/to/wp-content/plugins/
 1. **Plugins > Add New > Upload Plugin**
 2. Upload the ZIP file
 3. Activate
-4. Go to **G33ki Cloud > Settings**
+4. Go to **Cloud Media Offload > Settings**
 
 ---
 

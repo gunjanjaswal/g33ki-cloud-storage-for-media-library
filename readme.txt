@@ -159,7 +159,7 @@ No additional setup steps, libraries, or Composer required. The plugin works imm
 
 = Configuration =
 
-1. Navigate to **G33ki Cloud > Settings** in your WordPress admin
+1. Navigate to **Cloud Media Offload > Settings** in your WordPress admin
 2. Select your storage provider (Amazon S3, DigitalOcean Spaces, or Google Cloud Storage)
 3. Enter your credentials:
    * Access Key / Access Key ID
@@ -191,7 +191,7 @@ Files are first uploaded to your WordPress server, then automatically copied to 
 
 = What happens to my existing media files? =
 
-Existing media files are not automatically migrated. Use the **Bulk Offload** tool under G33ki Cloud > Bulk Offload to migrate existing files with one click.
+Existing media files are not automatically migrated. Use the **Bulk Offload** tool under Cloud Media Offload > Bulk Offload to migrate existing files with one click.
 
 = Can I remove local files after uploading to cloud storage? =
 
@@ -203,19 +203,19 @@ Absolutely! Enter your CDN URL (CloudFront, KeyCDN, BunnyCDN, etc.) in the "CDN 
 
 = What if I deactivate the plugin? =
 
-Before deactivating, go to **G33ki Cloud > Restore Local** to download all cloud-stored files back to your server. A warning notice on the Plugins page reminds you if local files are missing. After restoring, WordPress will serve media from your server as normal.
+Before deactivating, go to **Cloud Media Offload > Restore Local** to download all cloud-stored files back to your server. A warning notice on the Plugins page reminds you if local files are missing. After restoring, WordPress will serve media from your server as normal.
 
 = Some images show 403 AccessDenied errors after bulk offload. How do I fix this? =
 
-Go to **G33ki Cloud > Fix Permissions**. This tool scans all offloaded files and detects which ones are returning errors. Click "Fix All Broken Files" to set the correct public-read ACL on each file.
+Go to **Cloud Media Offload > Fix Permissions**. This tool scans all offloaded files and detects which ones are returning errors. Click "Fix All Broken Files" to set the correct public-read ACL on each file.
 
 = Some image sizes (thumbnails) are not loading from the cloud. How do I fix this? =
 
-Go to **G33ki Cloud > Fix Thumbnails**. This tool scans all offloaded attachments and finds which thumbnail sizes are missing from the cloud. Click "Fix Missing Thumbnails" to upload them.
+Go to **Cloud Media Offload > Fix Thumbnails**. This tool scans all offloaded attachments and finds which thumbnail sizes are missing from the cloud. Click "Fix Missing Thumbnails" to upload them.
 
 = I changed my CDN URL / bucket / region and now images are broken. How do I fix this? =
 
-Go to **G33ki Cloud > Fix URLs**. This tool detects when stored URLs don't match your current settings. Click "Fix All Mismatched URLs" to update them — no re-uploading needed.
+Go to **Cloud Media Offload > Fix URLs**. This tool detects when stored URLs don't match your current settings. Click "Fix All Mismatched URLs" to update them — no re-uploading needed.
 
 = The bulk offload stops or times out midway. What do I do? =
 
