@@ -1,9 +1,9 @@
 === Cloud Storage For Media Library — S3, DigitalOcean Spaces & Google Cloud ===
 Contributors: gunjanjaswal
 Tags: offload media library, move media library to cloud, cloud storage, s3, cdn
-Requires at least: 5.0
+Requires at least: 5.3
 Tested up to: 7.0
-Stable tag: 1.3.0
+Stable tag: 1.3.1
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -273,6 +273,9 @@ Yes! All credentials are stored securely in your WordPress database. Data is tra
 8. Plugin action links — quick access to settings and support
 
 == Changelog ==
+
+= 1.3.1 =
+* Fix: corrected the declared minimum WordPress version. The plugin calls `wp_create_image_subsizes()` when regenerating a missing thumbnail, which needs WordPress 5.3, while the headers claimed support back to 5.0. The call was already wrapped in a `function_exists()` guard so nothing ever fatalled — on 5.0-5.2 the regeneration simply, and silently, did nothing. The headers now state 5.3 so the requirement is honest and the official Plugin Check passes cleanly.
 
 = 1.3.0 =
 * Renamed the plugin display title to "Cloud Storage For Media Library — S3, DigitalOcean Spaces & Google Cloud" for clarity in search and listings. The plugin slug, settings (`g33ki_settings`), and all stored data are unchanged — this is a display-only rebrand and updates safely with no reconfiguration required.
