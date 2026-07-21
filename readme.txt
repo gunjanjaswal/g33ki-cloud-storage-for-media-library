@@ -334,6 +334,9 @@ Yes! All credentials are stored securely in your WordPress database. Data is tra
 
 == Upgrade Notice ==
 
+= 1.3.1 =
+Corrects the declared minimum WordPress version from 5.0 to 5.3, which is what the thumbnail regeneration already required. No functional change.
+
 = 1.3.0 =
 Display name changed to "Cloud Storage For Media Library". The slug and your settings are unchanged — safe to update, no reconfiguration needed.
 
