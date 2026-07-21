@@ -4,10 +4,10 @@
 
 ### Seamlessly offload WordPress media library to cloud storage — move media library to cloud with ease.
 
-[![WordPress](https://img.shields.io/badge/WordPress-5.0%2B-21759B?style=for-the-badge&logo=wordpress&logoColor=white)](https://wordpress.org)
+[![WordPress](https://img.shields.io/badge/WordPress-5.3%2B-21759B?style=for-the-badge&logo=wordpress&logoColor=white)](https://wordpress.org)
 [![PHP](https://img.shields.io/badge/PHP-7.4%2B-777BB4?style=for-the-badge&logo=php&logoColor=white)](https://php.net)
 [![License](https://img.shields.io/badge/License-GPLv2-E74C3C?style=for-the-badge)](https://www.gnu.org/licenses/gpl-2.0.html)
-[![Version](https://img.shields.io/badge/Version-1.3.0-2ECC71?style=for-the-badge)](https://github.com/gunjanjaswal/g33ki-cloud-storage-for-media-library/releases)
+[![Version](https://img.shields.io/badge/Version-1.3.1-2ECC71?style=for-the-badge)](https://github.com/gunjanjaswal/Cloud-Storage-For-Media-Library/releases)
 [![Support on Ko-fi](https://img.shields.io/badge/Ko--fi-Support-FF5E5B?style=for-the-badge&logo=ko-fi&logoColor=white)](https://ko-fi.com/gunjanjaswal)
 
 <br>
@@ -134,8 +134,8 @@ Used to store and serve your media files globally.
 
 | Requirement | Minimum |
 |------------|---------|
-| WordPress | 5.0+ |
-| PHP | 7.2+ |
+| WordPress | 5.3+ |
+| PHP | 7.4+ |
 | Cloud Account | S3, Spaces, or GCS |
 
 ---
@@ -274,6 +274,10 @@ g33ki-cloud-storage-for-media-library/
 ---
 
 ## 📝 Changelog
+
+### 1.3.1
+- **Fix: the declared minimum WordPress version was wrong.** `class-fix-thumbnails.php` calls `wp_create_image_subsizes()` when a thumbnail is missing locally, which requires WordPress 5.3, while the headers claimed support back to 5.0. Nothing ever fatalled, since the call is already wrapped in a `function_exists()` guard, so on 5.0–5.2 the regeneration simply did nothing. But the declared floor was dishonest, and the official Plugin Check flags it as an error because it compares APIs against the declared minimum rather than following the guard. Headers now state 5.3.
+- Docs: the requirements table above also still claimed PHP 7.2, which was superseded by 7.4 back in 1.2.3. Corrected.
 
 ### 1.3.0
 - Renamed the plugin display title to **Cloud Storage For Media Library — S3, DigitalOcean Spaces & Google Cloud** for clarity in search and listings. The slug, settings, and stored data are unchanged — display-only rebrand, safe to update.
