@@ -115,11 +115,11 @@ class G33KI_Uploader {
             return null;
         }
         
-        $provider_class = 'G33KI_' . ucfirst($this->settings['provider']) . '_Provider';
-        if (!class_exists($provider_class)) {
+        $provider_class = G33KI_Provider_Base::class_for($this->settings['provider']);
+        if ('' === $provider_class || !class_exists($provider_class)) {
             return null;
         }
-        
+
         return new $provider_class($this->settings);
     }
     

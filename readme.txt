@@ -1,27 +1,29 @@
-=== Cloud Storage For Media Library — S3, DigitalOcean Spaces & Google Cloud ===
+=== G33ki Cloud Media Offload for S3, DigitalOcean Spaces & Google Cloud ===
 Contributors: gunjanjaswal
-Tags: offload media library, move media library to cloud, cloud storage, s3, cdn
+Tags: offload media, cloud storage, s3, digitalocean spaces, cdn
 Requires at least: 5.3
 Tested up to: 7.0
-Stable tag: 1.3.1
+Stable tag: 1.3.2
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Donate link: https://ko-fi.com/gunjanjaswal
 
-Effortlessly offload media library assets to Amazon S3, DigitalOcean Spaces, or Google Cloud Storage. Seamlessly move media library to cloud.
+Offload your WordPress media library to Amazon S3, DigitalOcean Spaces, or Google Cloud Storage and serve files over a CDN.
 
 == Description ==
 
-**Cloud Storage For Media Library** is the ultimate solution to **offload media library** assets, including images, videos, and documents, to leading cloud storage providers. By choosing to **move media library to cloud**, you significantly improve your website's performance, reduce server hosting costs, and leverage global CDN delivery — all with zero manual effort and no external dependencies.
+**G33ki Cloud Media Offload** copies your WordPress media library, including images, videos, and documents, to a cloud storage provider of your choice and rewrites the URLs so files are served from the cloud or your CDN. This can reduce load on your web server and take advantage of the provider's global delivery network.
 
-Whether you're looking to offload WordPress media to Amazon S3, or seeking a cost-effective way to store files on DigitalOcean Spaces, this plugin handles it all automatically.
+It works with three providers: Amazon S3, DigitalOcean Spaces, and Google Cloud Storage (via HMAC keys). There is no SDK or Composer step to install; the plugin talks to each provider's REST API using WordPress's built-in HTTP functions with AWS Signature V4 request signing.
+
+*This plugin is a third-party integration and is not affiliated with, endorsed by, or sponsored by Amazon, DigitalOcean, or Google. "Amazon S3", "DigitalOcean Spaces", and "Google Cloud Storage" are trademarks of their respective owners.*
 
 = Key Features =
 
 **Multi-Cloud Provider Support**
 
-* **Amazon S3** — Industry-leading object storage with global infrastructure
+* **Amazon S3** — Object storage with global infrastructure
 * **DigitalOcean Spaces** — S3-compatible storage with predictable, affordable pricing
 * **Google Cloud Storage** — Enterprise-grade storage powered by Google's network (via HMAC keys)
 
@@ -92,33 +94,29 @@ Each repair tool follows a **Scan > Review > Fix** workflow with real-time progr
 = Supported Cloud Providers =
 
 **Amazon S3**
-The industry-standard object storage service with global reach, advanced features, and seamless CloudFront CDN integration.
+Object storage service with global reach, a broad feature set, and CloudFront CDN integration.
 
 **DigitalOcean Spaces**
-S3-compatible storage with simple, predictable pricing and built-in CDN. Perfect for developers and growing businesses.
+S3-compatible storage with simple, predictable pricing and a built-in CDN.
 
 **Google Cloud Storage**
 Powerful storage infrastructure from Google with multi-regional redundancy and edge caching capabilities. Uses HMAC keys for authentication.
 
-= Perfect For =
+= Common Use Cases =
 
-* **High-Traffic Websites** — Reduce server load and bandwidth costs
-* **Photography & Portfolio Sites** — Store and deliver large image libraries efficiently
-* **E-commerce Stores** — Offload product images and improve checkout speed
-* **News & Magazine Sites** — Handle extensive media archives with ease
-* **Multi-Site Networks** — Centralize media storage across multiple sites
+* High-traffic websites that want to move media bandwidth off the web server
+* Photography and portfolio sites with large image libraries
+* Stores that keep a lot of product images
+* News and magazine sites with large media archives
+* Multisite networks that want media stored in cloud buckets
 
-= SEO & Performance Benefits =
+= Performance Notes =
 
-* **Faster Page Load Times** — Improve Core Web Vitals and SEO rankings
-* **Global CDN Delivery** — Serve content from locations closest to your visitors
-* **Mobile Optimization** — Faster image delivery for mobile users
-* **Better Search Rankings** — Google rewards faster websites
-* **Reduced Bounce Rate** — Keep visitors engaged with quick-loading pages
+Serving media from a cloud provider or CDN moves that traffic off your web server and can deliver files from a location closer to the visitor. Actual results depend on your host, your provider, your CDN configuration, and your theme, so this plugin does not promise any specific speed, SEO, or ranking outcome.
 
 == External services ==
 
-This plugin connects to external cloud storage providers to automatically offload and serve your media files. Depending on your configuration, it relies on one of the following third-party services:
+This plugin is a cloud-storage offloading service: it connects to the cloud provider **you** choose, using **your own** account credentials, and uploads your media there so the files can be served from that provider or your CDN. It connects only to the bucket and region you configure on the settings screen. No media or credentials are ever sent to the plugin author or any other party. Depending on your configuration, it relies on one of the following third-party services:
 
 **Amazon S3**
 Used to store and serve your media files globally.
@@ -144,7 +142,7 @@ Used to store and serve your media files globally.
 
 1. Log in to your WordPress admin panel
 2. Navigate to Plugins > Add New
-3. Search for "Cloud Storage For Media Library" or "offload media library"
+3. Search for "G33ki Cloud Media Offload"
 4. Click "Install Now" and then "Activate"
 
 = Manual Installation =
@@ -159,7 +157,7 @@ No additional setup steps, libraries, or Composer required. The plugin works imm
 
 = Configuration =
 
-1. Navigate to **Cloud Storage For Media Library > Settings** in your WordPress admin
+1. Navigate to **Cloud Media Offload > Settings** in your WordPress admin
 2. Select your storage provider (Amazon S3, DigitalOcean Spaces, or Google Cloud Storage)
 3. Enter your credentials:
    * Access Key / Access Key ID
@@ -191,7 +189,7 @@ Files are first uploaded to your WordPress server, then automatically copied to 
 
 = What happens to my existing media files? =
 
-Existing media files are not automatically migrated. Use the **Bulk Offload** tool under Cloud Storage For Media Library > Bulk Offload to migrate existing files with one click.
+Existing media files are not automatically migrated. Use the **Bulk Offload** tool under Cloud Media Offload > Bulk Offload to migrate existing files with one click.
 
 = Can I remove local files after uploading to cloud storage? =
 
@@ -203,19 +201,19 @@ Absolutely! Enter your CDN URL (CloudFront, KeyCDN, BunnyCDN, etc.) in the "CDN 
 
 = What if I deactivate the plugin? =
 
-Before deactivating, go to **Cloud Storage For Media Library > Restore Local** to download all cloud-stored files back to your server. A warning notice on the Plugins page reminds you if local files are missing. After restoring, WordPress will serve media from your server as normal.
+Before deactivating, go to **Cloud Media Offload > Restore Local** to download all cloud-stored files back to your server. A warning notice on the Plugins page reminds you if local files are missing. After restoring, WordPress will serve media from your server as normal.
 
 = Some images show 403 AccessDenied errors after bulk offload. How do I fix this? =
 
-Go to **Cloud Storage For Media Library > Fix Permissions**. This tool scans all offloaded files and detects which ones are returning errors. Click "Fix All Broken Files" to set the correct public-read ACL on each file.
+Go to **Cloud Media Offload > Fix Permissions**. This tool scans all offloaded files and detects which ones are returning errors. Click "Fix All Broken Files" to set the correct public-read ACL on each file.
 
 = Some image sizes (thumbnails) are not loading from the cloud. How do I fix this? =
 
-Go to **Cloud Storage For Media Library > Fix Thumbnails**. This tool scans all offloaded attachments and finds which thumbnail sizes are missing from the cloud. Click "Fix Missing Thumbnails" to upload them.
+Go to **Cloud Media Offload > Fix Thumbnails**. This tool scans all offloaded attachments and finds which thumbnail sizes are missing from the cloud. Click "Fix Missing Thumbnails" to upload them.
 
 = I changed my CDN URL / bucket / region and now images are broken. How do I fix this? =
 
-Go to **Cloud Storage For Media Library > Fix URLs**. This tool detects when stored URLs don't match your current settings. Click "Fix All Mismatched URLs" to update them — no re-uploading needed.
+Go to **Cloud Media Offload > Fix URLs**. This tool detects when stored URLs don't match your current settings. Click "Fix All Mismatched URLs" to update them — no re-uploading needed.
 
 = The bulk offload stops or times out midway. What do I do? =
 
@@ -231,7 +229,7 @@ Yes, the plugin works seamlessly with Elementor, Beaver Builder, Divi, WPBakery,
 
 = Can I use this with WooCommerce? =
 
-Yes! The plugin works perfectly with WooCommerce product images, galleries, and downloadable products.
+Yes. The plugin works with WooCommerce product images, galleries, and downloadable products.
 
 = Does this work with WordPress Multisite? =
 
@@ -273,6 +271,14 @@ Yes! All credentials are stored securely in your WordPress database. Data is tra
 8. Plugin action links — quick access to settings and support
 
 == Changelog ==
+
+= 1.3.2 =
+* Renamed the plugin to "G33ki Cloud Media Offload for S3, DigitalOcean Spaces & Google Cloud" so the title leads with the distinctive g33ki brand and places the provider names after "for". The slug (`g33ki-cloud-storage-for-media-library`), the `g33ki_settings` option, and all stored data are unchanged, so this updates in place with no reconfiguration.
+* Added a clear statement that the plugin is an independent integration and is not affiliated with Amazon, DigitalOcean, or Google.
+* Rewrote the description to drop comparative and promotional wording and to remove SEO/ranking claims the plugin cannot guarantee.
+* Expanded the External Services section to state that the plugin connects only to the provider, bucket, and region you configure with your own credentials, and sends nothing to the author.
+* Security hardening: provider classes are now resolved through an explicit allowlist (`G33KI_Provider_Base::class_for()`) instead of being built from the stored provider value, so a class name can never be constructed from request-supplied data.
+* Fixed the internal `G33KI_VERSION` constant, which still read 1.3.0.
 
 = 1.3.1 =
 * Fix: corrected the declared minimum WordPress version. The plugin calls `wp_create_image_subsizes()` when regenerating a missing thumbnail, which needs WordPress 5.3, while the headers claimed support back to 5.0. The call was already wrapped in a `function_exists()` guard so nothing ever fatalled — on 5.0-5.2 the regeneration simply, and silently, did nothing. The headers now state 5.3 so the requirement is honest and the official Plugin Check passes cleanly.
@@ -333,6 +339,9 @@ Yes! All credentials are stored securely in your WordPress database. Data is tra
 * Custom path prefix support
 
 == Upgrade Notice ==
+
+= 1.3.2 =
+Plugin renamed to "G33ki Cloud Media Offload" and description cleaned up for the WordPress.org guidelines. The slug and your settings are unchanged, so this is a safe in-place update with no reconfiguration. Also adds an allowlist for provider resolution.
 
 = 1.3.1 =
 Corrects the declared minimum WordPress version from 5.0 to 5.3, which is what the thumbnail regeneration already required. No functional change.

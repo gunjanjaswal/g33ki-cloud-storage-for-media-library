@@ -197,8 +197,8 @@ class G33KI_Fix_Thumbnails {
             return null;
         }
 
-        $provider_class = 'G33KI_' . ucfirst($settings['provider']) . '_Provider';
-        if (!class_exists($provider_class)) {
+        $provider_class = G33KI_Provider_Base::class_for($settings['provider']);
+        if ('' === $provider_class || !class_exists($provider_class)) {
             return null;
         }
 

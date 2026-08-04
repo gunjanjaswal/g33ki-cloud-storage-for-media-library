@@ -8,11 +8,33 @@ if (!defined('ABSPATH')) {
 }
 
 abstract class G33KI_Provider_Base {
-    
+
     protected $settings;
-    
+
     public function __construct($settings) {
         $this->settings = $settings;
+    }
+
+    /**
+     * Resolve a provider slug to its class name using an explicit allowlist.
+     *
+     * Only the three providers this plugin ships are accepted. Any other value
+     * (including anything derived from request input) returns an empty string,
+     * so a class name can never be built dynamically from untrusted data.
+     *
+     * @param string $provider Provider slug: 's3', 'spaces', or 'gcs'.
+     * @return string Fully-qualified class name, or '' if not allowed.
+     */
+    public static function class_for($provider) {
+        $allowed = array(
+            's3'     => 'G33KI_S3_Provider',
+            'spaces' => 'G33KI_Spaces_Provider',
+            'gcs'    => 'G33KI_GCS_Provider',
+        );
+
+        $provider = is_string($provider) ? strtolower($provider) : '';
+
+        return isset($allowed[$provider]) ? $allowed[$provider] : '';
     }
     
     /**

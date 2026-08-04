@@ -102,12 +102,12 @@ class g33ki_settings {
         $provider = isset($_POST['provider']) ? sanitize_text_field(wp_unslash($_POST['provider'])) : '';
         $credentials = isset($_POST['credentials']) ? array_map('sanitize_text_field', wp_unslash($_POST['credentials'])) : array();
         
-        // Get provider instance
-        $provider_class = 'G33KI_' . ucfirst($provider) . '_Provider';
-        if (!class_exists($provider_class)) {
+        // Get provider instance (allowlist-resolved; never built from raw input)
+        $provider_class = G33KI_Provider_Base::class_for($provider);
+        if ('' === $provider_class || !class_exists($provider_class)) {
             wp_send_json_error(array('message' => __('Invalid provider', 'g33ki-cloud-storage-for-media-library')));
         }
-        
+
         $provider_instance = new $provider_class($credentials);
         $result = $provider_instance->test_connection();
         
