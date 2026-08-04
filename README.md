@@ -2,12 +2,12 @@
 
 # ☁️ G33ki Cloud Media Offload for S3, DigitalOcean Spaces & Google Cloud
 
-### Seamlessly offload WordPress media library to cloud storage — move media library to cloud with ease.
+### Offload your WordPress media library to Amazon S3, DigitalOcean Spaces, or Google Cloud Storage and serve it over a CDN.
 
 [![WordPress](https://img.shields.io/badge/WordPress-5.3%2B-21759B?style=for-the-badge&logo=wordpress&logoColor=white)](https://wordpress.org)
 [![PHP](https://img.shields.io/badge/PHP-7.4%2B-777BB4?style=for-the-badge&logo=php&logoColor=white)](https://php.net)
 [![License](https://img.shields.io/badge/License-GPLv2-E74C3C?style=for-the-badge)](https://www.gnu.org/licenses/gpl-2.0.html)
-[![Version](https://img.shields.io/badge/Version-1.3.1-2ECC71?style=for-the-badge)](https://github.com/gunjanjaswal/Cloud-Storage-For-Media-Library/releases)
+[![Version](https://img.shields.io/badge/Version-1.3.2-2ECC71?style=for-the-badge)](https://github.com/gunjanjaswal/Cloud-Storage-For-Media-Library/releases)
 [![Support on Ko-fi](https://img.shields.io/badge/Ko--fi-Support-FF5E5B?style=for-the-badge&logo=ko-fi&logoColor=white)](https://ko-fi.com/gunjanjaswal)
 
 <br>
@@ -277,6 +277,14 @@ g33ki-cloud-storage-for-media-library/
 
 ## 📝 Changelog
 
+### 1.3.2
+- Renamed to **G33ki Cloud Media Offload for S3, DigitalOcean Spaces & Google Cloud**. The title now leads with the g33ki brand and puts the provider names after "for". The slug (`g33ki-cloud-storage-for-media-library`) and your `g33ki_settings` option are unchanged, so it updates in place with no reconfiguration.
+- Added a clear note that this is an independent integration and is not affiliated with Amazon, DigitalOcean, or Google.
+- Reworked the description to drop comparative and promotional wording and remove SEO/ranking claims the plugin can't promise.
+- Expanded the External Services section: the plugin connects only to the provider, bucket, and region you configure, using your own credentials, and sends nothing to the author.
+- Security: provider classes now resolve through an explicit allowlist (`G33KI_Provider_Base::class_for()`) instead of being built from the stored provider value.
+- Fixed the `G33KI_VERSION` constant, which still read 1.3.0.
+
 ### 1.3.1
 - **Fix: the declared minimum WordPress version was wrong.** `class-fix-thumbnails.php` calls `wp_create_image_subsizes()` when a thumbnail is missing locally, which requires WordPress 5.3, while the headers claimed support back to 5.0. Nothing ever fatalled, since the call is already wrapped in a `function_exists()` guard, so on 5.0–5.2 the regeneration simply did nothing. But the declared floor was dishonest, and the official Plugin Check flags it as an error because it compares APIs against the declared minimum rather than following the guard. Headers now state 5.3.
 - Docs: the requirements table above also still claimed PHP 7.2, which was superseded by 7.4 back in 1.2.3. Corrected.
@@ -286,7 +294,7 @@ g33ki-cloud-storage-for-media-library/
 - Cleaned up admin provider labels (removed the redundant brand suffix).
 
 ### 1.2.4
-- **WordPress 7.0 Connectors API integration (tested against `D:\wamp64\www\wordpress7`):** registers Amazon S3, DigitalOcean Spaces, and Google Cloud Storage as `cloud_storage` connectors on the `wp_connectors_init` action.
+- **WordPress 7.0 Connectors API integration:** registers Amazon S3, DigitalOcean Spaces, and Google Cloud Storage as `cloud_storage` connectors on the `wp_connectors_init` action.
 - Each provider's connector links back to this plugin's settings page for credential management (`credentials_url`).
 - The plugin stores multiple credentials per provider (`access_key`, `secret_key`, `bucket`, `region`) inside one option `g33ki_settings`. The Connectors API's `api_key` auth method only handles a single setting value, so connectors are registered with `method: none` to act as informational/navigation entries. Full multi-field central management will land once core supports it (or after a future option refactor).
 - Added `g33ki_register_connectors` action hook so third-party code can register richer connectors against the same providers.
