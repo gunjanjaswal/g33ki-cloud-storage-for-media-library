@@ -3,7 +3,7 @@ Contributors: gunjanjaswal
 Tags: offload media, cloud storage, s3, digitalocean spaces, cdn
 Requires at least: 5.3
 Tested up to: 7.0
-Stable tag: 1.3.3
+Stable tag: 1.3.4
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -257,7 +257,7 @@ Yes! All credentials are stored securely in your WordPress database. Data is tra
 
 * Visit the WordPress.org support forum
 * Contact the developer: hello@gunjanjaswal.me
-* Report bugs on [GitHub](https://github.com/gunjanjaswal/g33ki-cloud-storage-for-media-library)
+* Report bugs on [GitHub](https://github.com/gunjanjaswal/OffloadForge-Cloud-Media-Offload)
 
 == Screenshots ==
 
@@ -271,6 +271,9 @@ Yes! All credentials are stored securely in your WordPress database. Data is tra
 8. Plugin action links — quick access to settings and support
 
 == Changelog ==
+
+= 1.3.4 =
+* Updated the plugin's GitHub links (Plugin URI and the bug-report link) to the current repository. No functional change.
 
 = 1.3.3 =
 * Renamed the plugin to "OffloadForge - Cloud Media Offload for S3, DigitalOcean Spaces & Google Cloud". The title now leads with the distinctive OffloadForge brand. The slug (`g33ki-cloud-storage-for-media-library`), the `g33ki_settings` option, and all stored data are unchanged, so this updates in place with no reconfiguration. Admin menu, settings heading, and docs follow the new name.
@@ -342,6 +345,9 @@ Yes! All credentials are stored securely in your WordPress database. Data is tra
 * Custom path prefix support
 
 == Upgrade Notice ==
+
+= 1.3.4 =
+Housekeeping: corrected the plugin's GitHub links. No functional change.
 
 = 1.3.3 =
 Plugin renamed to "OffloadForge". The slug and your settings are unchanged, so this is a safe in-place update with no reconfiguration.

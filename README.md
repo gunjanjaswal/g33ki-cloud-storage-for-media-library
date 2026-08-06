@@ -7,7 +7,7 @@
 [![WordPress](https://img.shields.io/badge/WordPress-5.3%2B-21759B?style=for-the-badge&logo=wordpress&logoColor=white)](https://wordpress.org)
 [![PHP](https://img.shields.io/badge/PHP-7.4%2B-777BB4?style=for-the-badge&logo=php&logoColor=white)](https://php.net)
 [![License](https://img.shields.io/badge/License-GPLv2-E74C3C?style=for-the-badge)](https://www.gnu.org/licenses/gpl-2.0.html)
-[![Version](https://img.shields.io/badge/Version-1.3.3-2ECC71?style=for-the-badge)](https://github.com/gunjanjaswal/Cloud-Storage-For-Media-Library/releases)
+[![Version](https://img.shields.io/badge/Version-1.3.4-2ECC71?style=for-the-badge)](https://github.com/gunjanjaswal/OffloadForge-Cloud-Media-Offload/releases)
 [![Support on Ko-fi](https://img.shields.io/badge/Ko--fi-Support-FF5E5B?style=for-the-badge&logo=ko-fi&logoColor=white)](https://ko-fi.com/gunjanjaswal)
 
 <br>
@@ -146,7 +146,7 @@ Used to store and serve your media files globally.
 
 ```bash
 # Clone the repo
-git clone https://github.com/gunjanjaswal/g33ki-cloud-storage-for-media-library.git
+git clone https://github.com/gunjanjaswal/OffloadForge-Cloud-Media-Offload.git
 
 # Copy to your WordPress plugins directory
 cp -r g33ki-cloud-storage-for-media-library /path/to/wp-content/plugins/
@@ -276,6 +276,9 @@ g33ki-cloud-storage-for-media-library/
 ---
 
 ## 📝 Changelog
+
+### 1.3.4
+- Housekeeping: updated the plugin's GitHub links (Plugin URI, bug-report and clone links) to the current repository. No functional change.
 
 ### 1.3.3
 - Renamed to **OffloadForge - Cloud Media Offload for S3, DigitalOcean Spaces & Google Cloud**. The title now leads with the distinctive OffloadForge brand. The slug (`g33ki-cloud-storage-for-media-library`) and your `g33ki_settings` option are unchanged, so it updates in place with no reconfiguration. Admin menu, settings heading, and docs follow the new name.
