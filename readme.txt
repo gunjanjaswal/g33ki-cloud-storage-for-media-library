@@ -1,9 +1,9 @@
-=== G33ki Cloud Media Offload for S3, DigitalOcean Spaces & Google Cloud ===
+=== OffloadForge - Cloud Media Offload for S3, DigitalOcean Spaces & Google Cloud ===
 Contributors: gunjanjaswal
 Tags: offload media, cloud storage, s3, digitalocean spaces, cdn
 Requires at least: 5.3
 Tested up to: 7.0
-Stable tag: 1.3.2
+Stable tag: 1.3.3
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -13,7 +13,7 @@ Offload your WordPress media library to Amazon S3, DigitalOcean Spaces, or Googl
 
 == Description ==
 
-**G33ki Cloud Media Offload** copies your WordPress media library, including images, videos, and documents, to a cloud storage provider of your choice and rewrites the URLs so files are served from the cloud or your CDN. This can reduce load on your web server and take advantage of the provider's global delivery network.
+**OffloadForge** copies your WordPress media library, including images, videos, and documents, to a cloud storage provider of your choice and rewrites the URLs so files are served from the cloud or your CDN. This can reduce load on your web server and take advantage of the provider's global delivery network.
 
 It works with three providers: Amazon S3, DigitalOcean Spaces, and Google Cloud Storage (via HMAC keys). There is no SDK or Composer step to install; the plugin talks to each provider's REST API using WordPress's built-in HTTP functions with AWS Signature V4 request signing.
 
@@ -142,7 +142,7 @@ Used to store and serve your media files globally.
 
 1. Log in to your WordPress admin panel
 2. Navigate to Plugins > Add New
-3. Search for "G33ki Cloud Media Offload"
+3. Search for "OffloadForge"
 4. Click "Install Now" and then "Activate"
 
 = Manual Installation =
@@ -157,7 +157,7 @@ No additional setup steps, libraries, or Composer required. The plugin works imm
 
 = Configuration =
 
-1. Navigate to **Cloud Media Offload > Settings** in your WordPress admin
+1. Navigate to **OffloadForge > Settings** in your WordPress admin
 2. Select your storage provider (Amazon S3, DigitalOcean Spaces, or Google Cloud Storage)
 3. Enter your credentials:
    * Access Key / Access Key ID
@@ -189,7 +189,7 @@ Files are first uploaded to your WordPress server, then automatically copied to 
 
 = What happens to my existing media files? =
 
-Existing media files are not automatically migrated. Use the **Bulk Offload** tool under Cloud Media Offload > Bulk Offload to migrate existing files with one click.
+Existing media files are not automatically migrated. Use the **Bulk Offload** tool under OffloadForge > Bulk Offload to migrate existing files with one click.
 
 = Can I remove local files after uploading to cloud storage? =
 
@@ -201,19 +201,19 @@ Absolutely! Enter your CDN URL (CloudFront, KeyCDN, BunnyCDN, etc.) in the "CDN 
 
 = What if I deactivate the plugin? =
 
-Before deactivating, go to **Cloud Media Offload > Restore Local** to download all cloud-stored files back to your server. A warning notice on the Plugins page reminds you if local files are missing. After restoring, WordPress will serve media from your server as normal.
+Before deactivating, go to **OffloadForge > Restore Local** to download all cloud-stored files back to your server. A warning notice on the Plugins page reminds you if local files are missing. After restoring, WordPress will serve media from your server as normal.
 
 = Some images show 403 AccessDenied errors after bulk offload. How do I fix this? =
 
-Go to **Cloud Media Offload > Fix Permissions**. This tool scans all offloaded files and detects which ones are returning errors. Click "Fix All Broken Files" to set the correct public-read ACL on each file.
+Go to **OffloadForge > Fix Permissions**. This tool scans all offloaded files and detects which ones are returning errors. Click "Fix All Broken Files" to set the correct public-read ACL on each file.
 
 = Some image sizes (thumbnails) are not loading from the cloud. How do I fix this? =
 
-Go to **Cloud Media Offload > Fix Thumbnails**. This tool scans all offloaded attachments and finds which thumbnail sizes are missing from the cloud. Click "Fix Missing Thumbnails" to upload them.
+Go to **OffloadForge > Fix Thumbnails**. This tool scans all offloaded attachments and finds which thumbnail sizes are missing from the cloud. Click "Fix Missing Thumbnails" to upload them.
 
 = I changed my CDN URL / bucket / region and now images are broken. How do I fix this? =
 
-Go to **Cloud Media Offload > Fix URLs**. This tool detects when stored URLs don't match your current settings. Click "Fix All Mismatched URLs" to update them — no re-uploading needed.
+Go to **OffloadForge > Fix URLs**. This tool detects when stored URLs don't match your current settings. Click "Fix All Mismatched URLs" to update them — no re-uploading needed.
 
 = The bulk offload stops or times out midway. What do I do? =
 
@@ -271,6 +271,9 @@ Yes! All credentials are stored securely in your WordPress database. Data is tra
 8. Plugin action links — quick access to settings and support
 
 == Changelog ==
+
+= 1.3.3 =
+* Renamed the plugin to "OffloadForge - Cloud Media Offload for S3, DigitalOcean Spaces & Google Cloud". The title now leads with the distinctive OffloadForge brand. The slug (`g33ki-cloud-storage-for-media-library`), the `g33ki_settings` option, and all stored data are unchanged, so this updates in place with no reconfiguration. Admin menu, settings heading, and docs follow the new name.
 
 = 1.3.2 =
 * Renamed the plugin to "G33ki Cloud Media Offload for S3, DigitalOcean Spaces & Google Cloud" so the title leads with the distinctive g33ki brand and places the provider names after "for". The slug (`g33ki-cloud-storage-for-media-library`), the `g33ki_settings` option, and all stored data are unchanged, so this updates in place with no reconfiguration.
@@ -339,6 +342,9 @@ Yes! All credentials are stored securely in your WordPress database. Data is tra
 * Custom path prefix support
 
 == Upgrade Notice ==
+
+= 1.3.3 =
+Plugin renamed to "OffloadForge". The slug and your settings are unchanged, so this is a safe in-place update with no reconfiguration.
 
 = 1.3.2 =
 Plugin renamed to "G33ki Cloud Media Offload" and description cleaned up for the WordPress.org guidelines. The slug and your settings are unchanged, so this is a safe in-place update with no reconfiguration. Also adds an allowlist for provider resolution.

@@ -1,13 +1,13 @@
 <div align="center">
 
-# ☁️ G33ki Cloud Media Offload for S3, DigitalOcean Spaces & Google Cloud
+# ☁️ OffloadForge - Cloud Media Offload for S3, DigitalOcean Spaces & Google Cloud
 
 ### Offload your WordPress media library to Amazon S3, DigitalOcean Spaces, or Google Cloud Storage and serve it over a CDN.
 
 [![WordPress](https://img.shields.io/badge/WordPress-5.3%2B-21759B?style=for-the-badge&logo=wordpress&logoColor=white)](https://wordpress.org)
 [![PHP](https://img.shields.io/badge/PHP-7.4%2B-777BB4?style=for-the-badge&logo=php&logoColor=white)](https://php.net)
 [![License](https://img.shields.io/badge/License-GPLv2-E74C3C?style=for-the-badge)](https://www.gnu.org/licenses/gpl-2.0.html)
-[![Version](https://img.shields.io/badge/Version-1.3.2-2ECC71?style=for-the-badge)](https://github.com/gunjanjaswal/Cloud-Storage-For-Media-Library/releases)
+[![Version](https://img.shields.io/badge/Version-1.3.3-2ECC71?style=for-the-badge)](https://github.com/gunjanjaswal/Cloud-Storage-For-Media-Library/releases)
 [![Support on Ko-fi](https://img.shields.io/badge/Ko--fi-Support-FF5E5B?style=for-the-badge&logo=ko-fi&logoColor=white)](https://ko-fi.com/gunjanjaswal)
 
 <br>
@@ -24,7 +24,7 @@
 
 ## ✨ Features
 
-**G33ki Cloud Media Offload** copies your WordPress media library to Amazon S3, DigitalOcean Spaces, or Google Cloud Storage and rewrites the URLs so files are served from the cloud or your CDN. This moves media traffic off your web server and can deliver files from a location closer to the visitor.
+**OffloadForge** copies your WordPress media library to Amazon S3, DigitalOcean Spaces, or Google Cloud Storage and rewrites the URLs so files are served from the cloud or your CDN. This moves media traffic off your web server and can deliver files from a location closer to the visitor.
 
 *This is an independent integration and is not affiliated with, endorsed by, or sponsored by Amazon, DigitalOcean, or Google.*
 
@@ -84,7 +84,7 @@
 ### 🔐 Fix Permissions
 Scans all offloaded files via HEAD requests. Files returning **403 AccessDenied** or other errors are listed with a one-click fix that sets `public-read` ACL or re-uploads with correct permissions.
 
-**Cloud Media Offload > Fix Permissions**
+**OffloadForge > Fix Permissions**
 
 </td>
 <td width="33%" align="center">
@@ -92,7 +92,7 @@ Scans all offloaded files via HEAD requests. Files returning **403 AccessDenied*
 ### 🖼️ Fix Thumbnails
 Finds offloaded images where **thumbnail sizes are missing** from the cloud. Common after bulk offload interruptions or when WordPress generates new image sizes. Uploads missing thumbnails and stores their cloud URLs.
 
-**Cloud Media Offload > Fix Thumbnails**
+**OffloadForge > Fix Thumbnails**
 
 </td>
 <td width="33%" align="center">
@@ -100,7 +100,7 @@ Finds offloaded images where **thumbnail sizes are missing** from the cloud. Com
 ### 🔗 Fix URLs
 Detects when your **CDN URL, bucket, or region** settings changed but stored media URLs still point to the old location. Bulk-updates all URLs to match current settings — **no re-uploading needed**.
 
-**Cloud Media Offload > Fix URLs**
+**OffloadForge > Fix URLs**
 
 </td>
 </tr>
@@ -156,7 +156,7 @@ cp -r g33ki-cloud-storage-for-media-library /path/to/wp-content/plugins/
 1. **Plugins > Add New > Upload Plugin**
 2. Upload the ZIP file
 3. Activate
-4. Go to **Cloud Media Offload > Settings**
+4. Go to **OffloadForge > Settings**
 
 ---
 
@@ -276,6 +276,9 @@ g33ki-cloud-storage-for-media-library/
 ---
 
 ## 📝 Changelog
+
+### 1.3.3
+- Renamed to **OffloadForge - Cloud Media Offload for S3, DigitalOcean Spaces & Google Cloud**. The title now leads with the distinctive OffloadForge brand. The slug (`g33ki-cloud-storage-for-media-library`) and your `g33ki_settings` option are unchanged, so it updates in place with no reconfiguration. Admin menu, settings heading, and docs follow the new name.
 
 ### 1.3.2
 - Renamed to **G33ki Cloud Media Offload for S3, DigitalOcean Spaces & Google Cloud**. The title now leads with the g33ki brand and puts the provider names after "for". The slug (`g33ki-cloud-storage-for-media-library`) and your `g33ki_settings` option are unchanged, so it updates in place with no reconfiguration.

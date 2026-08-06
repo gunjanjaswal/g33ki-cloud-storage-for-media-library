@@ -1,9 +1,9 @@
 <?php
 /**
- * Plugin Name: G33ki Cloud Media Offload for S3, DigitalOcean Spaces & Google Cloud
+ * Plugin Name: OffloadForge - Cloud Media Offload for S3, DigitalOcean Spaces & Google Cloud
  * Plugin URI: https://github.com/gunjanjaswal/g33ki-cloud-storage-for-media-library
  * Description: Offload your WordPress media library to Amazon S3, DigitalOcean Spaces, or Google Cloud Storage for CDN delivery. Not affiliated with Amazon, DigitalOcean, or Google.
- * Version: 1.3.2
+ * Version: 1.3.3
  * Author: Gunjan Jaswal
  * Author URI: https://gunjanjaswal.me
  * Requires at least: 5.3
@@ -21,7 +21,7 @@ if (!defined('ABSPATH')) {
 }
 
 // Define plugin constants
-define('G33KI_VERSION', '1.3.2');
+define('G33KI_VERSION', '1.3.3');
 define('G33KI_PLUGIN_DIR', plugin_dir_path(__FILE__));
 define('G33KI_PLUGIN_URL', plugin_dir_url(__FILE__));
 define('G33KI_PLUGIN_BASENAME', plugin_basename(__FILE__));
@@ -91,15 +91,15 @@ function g33ki_register_connectors($registry) {
     $providers = array(
         'g33ki-amazon-s3' => array(
             'name'        => __('Amazon S3', 'g33ki-cloud-storage-for-media-library'),
-            'description' => __('Offload media to Amazon S3. Manage credentials on the G33ki Cloud Media Offload settings screen.', 'g33ki-cloud-storage-for-media-library'),
+            'description' => __('Offload media to Amazon S3. Manage credentials on the OffloadForge settings screen.', 'g33ki-cloud-storage-for-media-library'),
         ),
         'g33ki-digitalocean-spaces' => array(
             'name'        => __('DigitalOcean Spaces', 'g33ki-cloud-storage-for-media-library'),
-            'description' => __('Offload media to DigitalOcean Spaces. Manage credentials on the G33ki Cloud Media Offload settings screen.', 'g33ki-cloud-storage-for-media-library'),
+            'description' => __('Offload media to DigitalOcean Spaces. Manage credentials on the OffloadForge settings screen.', 'g33ki-cloud-storage-for-media-library'),
         ),
         'g33ki-google-cloud-storage' => array(
             'name'        => __('Google Cloud Storage', 'g33ki-cloud-storage-for-media-library'),
-            'description' => __('Offload media to Google Cloud Storage (via HMAC keys). Manage credentials on the G33ki Cloud Media Offload settings screen.', 'g33ki-cloud-storage-for-media-library'),
+            'description' => __('Offload media to Google Cloud Storage (via HMAC keys). Manage credentials on the OffloadForge settings screen.', 'g33ki-cloud-storage-for-media-library'),
         ),
     );
 
