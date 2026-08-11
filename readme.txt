@@ -274,6 +274,7 @@ Yes! All credentials are stored securely in your WordPress database. Data is tra
 
 = 1.3.5 =
 * Fixed a PHP "Array to string conversion" warning triggered when an image was requested by explicit width/height dimensions (an array size) instead of a named size. The attachment-image-src filter now guards the per-size meta lookup, so array sizes cleanly fall back to the full-size cloud URL. No change for named sizes.
+* Removed the lightning emoji from the admin menu label so the sidebar shows a single cloud icon (the emoji rendered like a duplicate icon next to the dashicon).
 
 = 1.3.4 =
 * Updated the plugin's GitHub links (Plugin URI and the bug-report link) to the current repository. No functional change.
