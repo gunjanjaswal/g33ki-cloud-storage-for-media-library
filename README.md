@@ -7,7 +7,7 @@
 [![WordPress](https://img.shields.io/badge/WordPress-5.3%2B-21759B?style=for-the-badge&logo=wordpress&logoColor=white)](https://wordpress.org)
 [![PHP](https://img.shields.io/badge/PHP-7.4%2B-777BB4?style=for-the-badge&logo=php&logoColor=white)](https://php.net)
 [![License](https://img.shields.io/badge/License-GPLv2-E74C3C?style=for-the-badge)](https://www.gnu.org/licenses/gpl-2.0.html)
-[![Version](https://img.shields.io/badge/Version-1.3.4-2ECC71?style=for-the-badge)](https://github.com/gunjanjaswal/OffloadForge-Cloud-Media-Offload/releases)
+[![Version](https://img.shields.io/badge/Version-1.3.5-2ECC71?style=for-the-badge)](https://github.com/gunjanjaswal/OffloadForge-Cloud-Media-Offload/releases)
 [![Support on Ko-fi](https://img.shields.io/badge/Ko--fi-Support-FF5E5B?style=for-the-badge&logo=ko-fi&logoColor=white)](https://ko-fi.com/gunjanjaswal)
 
 <br>
@@ -276,6 +276,10 @@ g33ki-cloud-storage-for-media-library/
 ---
 
 ## 📝 Changelog
+
+### 1.3.5
+- Fixed a PHP "Array to string conversion" warning that fired when an image was requested by explicit width/height dimensions (an array size) instead of a named size. The attachment image-src filter now guards the per-size lookup, so array sizes fall back to the full-size cloud URL. No change for named sizes.
+- Removed the lightning emoji from the admin menu label so the sidebar shows a single cloud icon.
 
 ### 1.3.4
 - Housekeeping: updated the plugin's GitHub links (Plugin URI, bug-report and clone links) to the current repository. No functional change.
