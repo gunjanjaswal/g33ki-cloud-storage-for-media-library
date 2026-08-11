@@ -201,9 +201,16 @@ class G33ki_Cloud_Storage_For_Media_Library {
      */
     public function filter_attachment_image_src($image, $attachment_id, $size, $icon) {
         if ($image && isset($image[0])) {
-            $remote_url = get_post_meta($attachment_id, 'g33ki_remote_url_' . $size, true);
-            if (!$remote_url) {
-                $remote_url = get_post_meta($attachment_id, 'omtc_remote_url_' . $size, true);
+            $remote_url = '';
+            // $size is usually a registered size name (string), but WordPress can
+            // also pass an array of [width, height]. Only named sizes map to our
+            // per-size meta keys, so guard the concatenation — passing an array
+            // here raised "Array to string conversion" warnings.
+            if (is_string($size) && $size !== '') {
+                $remote_url = get_post_meta($attachment_id, 'g33ki_remote_url_' . $size, true);
+                if (!$remote_url) {
+                    $remote_url = get_post_meta($attachment_id, 'omtc_remote_url_' . $size, true);
+                }
             }
             if (!$remote_url) {
                 $remote_url = get_post_meta($attachment_id, 'g33ki_remote_url', true);

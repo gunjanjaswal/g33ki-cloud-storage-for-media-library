@@ -3,7 +3,7 @@ Contributors: gunjanjaswal
 Tags: offload media, cloud storage, s3, digitalocean spaces, cdn
 Requires at least: 5.3
 Tested up to: 7.0
-Stable tag: 1.3.4
+Stable tag: 1.3.5
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -271,6 +271,9 @@ Yes! All credentials are stored securely in your WordPress database. Data is tra
 8. Plugin action links — quick access to settings and support
 
 == Changelog ==
+
+= 1.3.5 =
+* Fixed a PHP "Array to string conversion" warning triggered when an image was requested by explicit width/height dimensions (an array size) instead of a named size. The attachment-image-src filter now guards the per-size meta lookup, so array sizes cleanly fall back to the full-size cloud URL. No change for named sizes.
 
 = 1.3.4 =
 * Updated the plugin's GitHub links (Plugin URI and the bug-report link) to the current repository. No functional change.
