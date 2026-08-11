@@ -81,6 +81,8 @@ class G33ki_Cloud_Storage_For_Media_Library {
         add_filter('plugin_action_links_' . G33KI_PLUGIN_BASENAME, array($this, 'plugin_action_links'));
         add_filter('plugin_row_meta', array($this, 'plugin_row_meta'), 10, 2);
         add_action('admin_notices', array($this, 'deactivation_warning_notice'));
+        add_action('after_plugin_row_' . G33KI_PLUGIN_BASENAME, array($this, 'plugin_row_warning'), 10, 3);
+        add_action('wp_ajax_g33ki_dismiss_deactivation_warning', array($this, 'dismiss_deactivation_warning'));
 
         // Output buffer to catch theme-hardcoded upload URLs (header, footer, etc.)
         if (!is_admin()) {
@@ -387,25 +389,29 @@ class G33ki_Cloud_Storage_For_Media_Library {
     }
 
     /**
-     * Show warning on plugins page if local files are missing
+     * Whether any offloaded attachment is missing its local copy.
+     *
+     * This is the "danger" state: media lives only in the cloud, so
+     * deactivating the plugin would break those URLs. The result is cached in
+     * a transient because the notice is shown on every admin screen, and the
+     * cache is cleared whenever a bulk offload or restore runs.
+     *
+     * @return bool
      */
-    public function deactivation_warning_notice() {
-        $screen = get_current_screen();
-        if (!$screen || $screen->id !== 'plugins') {
-            return;
+    public function local_files_missing() {
+        $cached = get_transient('g33ki_local_files_missing');
+        if ($cached !== false) {
+            return $cached === 'yes';
         }
 
-        $settings = get_option('g33ki_settings', array());
-        if (empty($settings['remove_local_files'])) {
-            return;
-        }
-
-        // Quick check: sample a few offloaded attachments to see if local files are missing
+        // Sample a bounded set of offloaded attachments rather than the whole
+        // library, so this stays cheap enough to run on any admin page.
         $args = array(
             'post_type'      => 'attachment',
             'post_status'    => 'inherit',
-            'posts_per_page' => 5,
+            'posts_per_page' => 50,
             'fields'         => 'ids',
+            'no_found_rows'  => true,
             // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query -- Needed to track offload state via meta
             'meta_query'     => array(
                 'relation' => 'OR',
@@ -414,13 +420,13 @@ class G33ki_Cloud_Storage_For_Media_Library {
                     'compare' => 'EXISTS',
                 ),
                 array(
-                    'key'     => 'g33ki_remote_url',
+                    'key'     => 'omtc_remote_url',
                     'compare' => 'EXISTS',
                 ),
             ),
         );
 
-        $query = new WP_Query($args);
+        $query   = new WP_Query($args);
         $missing = false;
         foreach ($query->posts as $id) {
             if (!file_exists(get_attached_file($id))) {
@@ -429,16 +435,126 @@ class G33ki_Cloud_Storage_For_Media_Library {
             }
         }
 
-        if (!$missing) {
+        set_transient('g33ki_local_files_missing', $missing ? 'yes' : 'no', 6 * HOUR_IN_SECONDS);
+        return $missing;
+    }
+
+    /**
+     * Clear the cached "local files missing" state.
+     *
+     * Called after bulk offload/restore so the warning reflects reality on the
+     * next admin page load.
+     */
+    public static function clear_local_files_cache() {
+        delete_transient('g33ki_local_files_missing');
+    }
+
+    /**
+     * The warning text shown to admins.
+     *
+     * @return string
+     */
+    private function warning_message() {
+        return __('Some media files exist only in cloud storage. If you deactivate this plugin, those media URLs will break.', 'g33ki-cloud-storage-for-media-library');
+    }
+
+    /**
+     * Persistent, dismissible warning shown on every admin page (including this
+     * plugin's own screens) while media lives only in the cloud.
+     */
+    public function deactivation_warning_notice() {
+        if (!current_user_can('manage_options')) {
+            return;
+        }
+
+        // Respect a per-user dismissal.
+        if (get_user_meta(get_current_user_id(), 'g33ki_hide_deactivation_warning', true)) {
+            return;
+        }
+
+        if (!$this->local_files_missing()) {
             return;
         }
 
         $restore_url = admin_url('admin.php?page=g33ki-bulk-restore');
-        echo '<div class="notice notice-warning">';
+        $nonce       = wp_create_nonce('g33ki_dismiss_warning');
+
+        echo '<div class="notice notice-warning is-dismissible g33ki-deactivation-warning" data-nonce="' . esc_attr($nonce) . '">';
         echo '<p><strong>' . esc_html__('OffloadForge', 'g33ki-cloud-storage-for-media-library') . ':</strong> ';
-        echo esc_html__('Some media files exist only in cloud storage. If you deactivate this plugin, those media URLs will break.', 'g33ki-cloud-storage-for-media-library') . ' ';
+        echo esc_html($this->warning_message()) . ' ';
         echo '<a href="' . esc_url($restore_url) . '"><strong>' . esc_html__('Restore local files first', 'g33ki-cloud-storage-for-media-library') . '</strong></a>';
         echo '</p></div>';
+
+        // Persist the dismissal when the user clicks the X. `ajaxurl` is always
+        // defined in wp-admin; jQuery ships with core. Core injects the
+        // .notice-dismiss button after DOM ready, so we delegate off document.
+        ?>
+        <script>
+        (function ($) {
+            $(document).on('click', '.g33ki-deactivation-warning .notice-dismiss', function () {
+                $.post(ajaxurl, {
+                    action: 'g33ki_dismiss_deactivation_warning',
+                    nonce: $(this).closest('.g33ki-deactivation-warning').data('nonce')
+                });
+            });
+        })(jQuery);
+        </script>
+        <?php
+    }
+
+    /**
+     * Store the per-user dismissal of the deactivation warning.
+     */
+    public function dismiss_deactivation_warning() {
+        check_ajax_referer('g33ki_dismiss_warning', 'nonce');
+
+        if (!current_user_can('manage_options')) {
+            wp_send_json_error();
+        }
+
+        update_user_meta(get_current_user_id(), 'g33ki_hide_deactivation_warning', 1);
+        wp_send_json_success();
+    }
+
+    /**
+     * Permanent highlighted row directly under the plugin on plugins.php.
+     *
+     * Unlike the dismissible notice, this stays put as long as media lives only
+     * in the cloud, keeping the risk visible right where deactivation happens.
+     *
+     * @param string $plugin_file Plugin file (unused; hook is name-scoped).
+     * @param array  $plugin_data Plugin data (unused).
+     * @param string $status      Plugin status (unused).
+     */
+    public function plugin_row_warning($plugin_file, $plugin_data, $status) {
+        if (!current_user_can('manage_options')) {
+            return;
+        }
+
+        if (!$this->local_files_missing()) {
+            return;
+        }
+
+        // Match the plugin list table's column count so the highlighted row
+        // spans the full width like a core update notice.
+        $columns = 4;
+        if (function_exists('_get_list_table')) {
+            $table = _get_list_table('WP_Plugins_List_Table');
+            if (is_object($table) && method_exists($table, 'get_column_count')) {
+                $columns = $table->get_column_count();
+            }
+        }
+
+        $restore_url = admin_url('admin.php?page=g33ki-bulk-restore');
+
+        echo '<tr class="plugin-update-tr active g33ki-plugin-row-warning">';
+        echo '<td colspan="' . esc_attr($columns) . '" class="plugin-update colspanchange">';
+        echo '<div class="notice inline notice-warning notice-alt"><p>';
+        echo '<strong>' . esc_html__('Important:', 'g33ki-cloud-storage-for-media-library') . '</strong> ';
+        echo esc_html($this->warning_message()) . ' ';
+        echo '<a href="' . esc_url($restore_url) . '"><strong>' . esc_html__('Restore local files first', 'g33ki-cloud-storage-for-media-library') . '</strong></a>';
+        echo '</p></div>';
+        echo '</td></tr>';
     }
 
     /**

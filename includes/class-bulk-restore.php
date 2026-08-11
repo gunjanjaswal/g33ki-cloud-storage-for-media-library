@@ -126,6 +126,9 @@ class G33KI_Bulk_Restore {
         // Check how many still need restoring
         $remaining = $this->get_restore_count();
 
+        // Restoring local copies clears (or reduces) the "cloud only" state.
+        G33ki_Cloud_Storage_For_Media_Library::clear_local_files_cache();
+
         wp_send_json_success(array(
             'processed' => $processed,
             'skipped'   => $skipped,

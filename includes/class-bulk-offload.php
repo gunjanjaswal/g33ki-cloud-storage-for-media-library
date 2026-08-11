@@ -99,7 +99,10 @@ class G33KI_Bulk_Offload {
         }
         
         $remaining = $query->found_posts - $processed;
-        
+
+        // Offloading (with local removal) can change the "cloud only" state.
+        G33ki_Cloud_Storage_For_Media_Library::clear_local_files_cache();
+
         wp_send_json_success(array(
             'processed' => $processed,
             'remaining' => max(0, $remaining),

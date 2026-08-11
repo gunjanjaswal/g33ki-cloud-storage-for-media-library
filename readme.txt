@@ -3,7 +3,7 @@ Contributors: gunjanjaswal
 Tags: offload media, cloud storage, s3, digitalocean spaces, cdn
 Requires at least: 5.3
 Tested up to: 7.0
-Stable tag: 1.3.5
+Stable tag: 1.3.6
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -271,6 +271,11 @@ Yes! All credentials are stored securely in your WordPress database. Data is tra
 8. Plugin action links — quick access to settings and support
 
 == Changelog ==
+
+= 1.3.6 =
+* Added a safety warning for when your media lives only in the cloud. If you turned on "remove local files" and offloaded, deactivating the plugin would break those URLs, so the plugin now watches for that state and warns you before it bites.
+* The warning shows on every admin screen (including the plugin's own pages) and has a close button, so you can dismiss it once you've read it.
+* It also appears as a highlighted note pinned right under OffloadForge on the Plugins page, where deactivation actually happens, so the risk is hard to miss. Both spots link straight to Restore Local so you can pull files back first.
 
 = 1.3.5 =
 * Fixed a PHP "Array to string conversion" warning triggered when an image was requested by explicit width/height dimensions (an array size) instead of a named size. The attachment-image-src filter now guards the per-size meta lookup, so array sizes cleanly fall back to the full-size cloud URL. No change for named sizes.
