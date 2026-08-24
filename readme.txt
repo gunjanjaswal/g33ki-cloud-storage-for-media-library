@@ -3,7 +3,7 @@ Contributors: gunjanjaswal
 Tags: offload media, cloud storage, s3, digitalocean spaces, cdn
 Requires at least: 5.3
 Tested up to: 7.1
-Stable tag: 1.3.6
+Stable tag: 1.3.7
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -272,6 +272,11 @@ Yes! All credentials are stored securely in your WordPress database. Data is tra
 
 == Changelog ==
 
+= 1.3.7 =
+* Fixed thumbnails going missing on WordPress 7.1, where the browser can now do the image processing itself. In that flow WordPress runs the attachment metadata filter twice, once before any thumbnail exists and again once they have all been sent up, and OffloadForge was doing its work on the first pass. It now waits for the pass that actually carries the sizes, so every thumbnail reaches your bucket.
+* Same fix closes a worse case: with "remove local files" switched on, the old behaviour deleted the original while the browser was still uploading thumbnails for it.
+* Nothing changes for uploads that WordPress processes on the server, including anything added by WP-CLI or another plugin.
+
 = 1.3.6 =
 * Added a safety warning for when your media lives only in the cloud. If you turned on "remove local files" and offloaded, deactivating the plugin would break those URLs, so the plugin now watches for that state and warns you before it bites.
 * The warning shows on every admin screen (including the plugin's own pages) and has a close button, so you can dismiss it once you've read it.
@@ -354,6 +359,9 @@ Yes! All credentials are stored securely in your WordPress database. Data is tra
 * Custom path prefix support
 
 == Upgrade Notice ==
+
+= 1.3.7 =
+Worth updating before WordPress 7.1 lands, especially if you have "remove local files" switched on. Browser uploads could lose their thumbnails, and the original was being deleted too early.
 
 = 1.3.4 =
 Housekeeping: corrected the plugin's GitHub links. No functional change.

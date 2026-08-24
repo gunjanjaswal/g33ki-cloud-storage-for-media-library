@@ -15,18 +15,32 @@ class G33KI_Uploader {
         $this->settings = get_option('g33ki_settings', array());
         
         // Hook into WordPress upload process
-        add_filter('wp_generate_attachment_metadata', array($this, 'upload_attachment'), 10, 2);
+        add_filter('wp_generate_attachment_metadata', array($this, 'upload_attachment'), 10, 3);
         add_action('delete_attachment', array($this, 'delete_attachment'));
     }
-    
+
     /**
      * Upload attachment and thumbnails to cloud storage
+     *
+     * @param array  $metadata      Attachment metadata.
+     * @param int    $attachment_id Attachment ID.
+     * @param string $context       'create' on the initial upload, 'update' afterwards.
      */
-    public function upload_attachment($metadata, $attachment_id) {
+    public function upload_attachment($metadata, $attachment_id, $context = 'update') {
         if (empty($this->settings['provider'])) {
             return $metadata;
         }
-        
+
+        // With client-side media processing (WordPress 7.1+) the browser sends the
+        // original first and then sideloads each thumbnail one by one, so this
+        // filter runs twice: on 'create' before any sub-size exists, and again on
+        // 'update' once they have all arrived. Offloading on the first pass would
+        // miss every thumbnail, and removing the local copies there would delete
+        // the original while the sideloads are still coming in.
+        if ('create' === $context && $this->client_is_sending_sub_sizes()) {
+            return $metadata;
+        }
+
         $provider = $this->get_provider();
         if (!$provider) {
             return $metadata;
@@ -107,6 +121,19 @@ class G33KI_Uploader {
         }
     }
     
+    /**
+     * Whether the browser still has sub-sizes to send for the upload in progress
+     *
+     * While the REST attachment controller is creating an attachment the client
+     * asked to process itself, core switches off server-side sub-size generation
+     * for the duration of that request and removes the filter again straight
+     * after. Its presence is therefore an exact signal that thumbnails are on
+     * their way and this pass is not the one to act on.
+     */
+    private function client_is_sending_sub_sizes() {
+        return (bool) has_filter('intermediate_image_sizes_advanced', '__return_empty_array');
+    }
+
     /**
      * Get provider instance
      */
